@@ -1,54 +1,31 @@
 package com.dev.app.bookstorerestapi.domain;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 import java.util.ArrayList;
 import java.util.List;
 
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+@Entity
 public class Role extends BaseEntity {
 
     private String role;
 
+    @ManyToMany
+    @JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"),
+    inverseJoinColumns = @JoinColumn(name = "role_id"))
     private List<User> users = new ArrayList<>();
 
+    @ManyToMany
+    @JoinTable(name = "role_privilege", joinColumns = @JoinColumn(name = "role_id"),
+    inverseJoinColumns = @JoinColumn(name = "privilege_id"))
     private List<Privilege> privileges = new ArrayList<>();
-
-    public Role() {
-    }
-
-    public Role(Long id, String role) {
-        super(id);
-        this.role = role;
-    }
-
-    public String getRole() {
-        return role;
-    }
-
-    public void setRole(String role) {
-        this.role = role;
-    }
-
-    public List<User> getUsers() {
-        return users;
-    }
-
-    public void setUsers(List<User> users) {
-        this.users = users;
-    }
-
-    public List<Privilege> getPrivileges() {
-        return privileges;
-    }
-
-    public void setPrivileges(List<Privilege> privileges) {
-        this.privileges = privileges;
-    }
-
-    @Override
-    public String toString() {
-        return "Role{" +
-                "role='" + role + '\'' +
-                ", users=" + users +
-                ", privileges=" + privileges +
-                '}';
-    }
 }
