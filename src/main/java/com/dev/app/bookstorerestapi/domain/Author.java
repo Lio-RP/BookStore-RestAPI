@@ -1,5 +1,6 @@
 package com.dev.app.bookstorerestapi.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -18,5 +19,6 @@ public class Author extends Person {
     private String phoneNumber;
 
     @ManyToMany(mappedBy = "authors")
+    @JsonIgnoreProperties("authors")
     private List<Book> books = new ArrayList<>();
 }

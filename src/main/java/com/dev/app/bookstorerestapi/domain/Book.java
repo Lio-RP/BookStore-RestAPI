@@ -27,5 +27,6 @@ public class Book extends BaseEntity {
     @ManyToMany
     @JoinTable(name = "author_book", joinColumns = @JoinColumn(name = "book_id"),
             inverseJoinColumns = @JoinColumn(name = "author_id"))
+    @JsonIgnoreProperties("books")
     private List<Author> authors = new ArrayList<>();
 }
