@@ -25,7 +25,7 @@ public class Book extends BaseEntity {
     private Category category;
 
     @ManyToMany
-    @JoinTable(name = "author_book", joinColumns = @JoinColumn(name = "book_id"),
-    inverseJoinColumns = @JoinColumn(name = "author_id"))
+    @JoinTable(name = "author_book", joinColumns = @JoinColumn(name = "author_id"),
+    inverseJoinColumns = @JoinColumn(name = "book_id"))
     private List<Author> authors = new ArrayList<>();
 }

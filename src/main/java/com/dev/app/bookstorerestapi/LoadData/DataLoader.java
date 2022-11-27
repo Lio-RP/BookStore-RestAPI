@@ -10,7 +10,6 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
 import java.math.BigInteger;
-import java.util.Arrays;
 
 @Component
 public class DataLoader implements CommandLineRunner {
@@ -52,7 +51,7 @@ public class DataLoader implements CommandLineRunner {
         book3.setEdition("Android 8 Edition");
 
         Author author1 = new Author();
-        author1.setLastName("Liban");
+        author1.setFirstName("Liban");
         author1.setLastName("Abdullahi");
         author1.setPhoneNumber("+79964426139");
         author1.setEmail("libanr4243@gmail.com");
@@ -69,9 +68,16 @@ public class DataLoader implements CommandLineRunner {
         book2.getAuthors().add(author1);
         book3.getAuthors().add(author1);
 
-        category.setBooks(Arrays.asList(book1, book2, book3));
+        //category.setBooks(Arrays.asList(book1, book2, book3));
+        category.getBooks().add(book1);
+        category.getBooks().add(book2);
+        category.getBooks().add(book3);
 
-        author1.setBooks(Arrays.asList(book1, book2, book3));
+        //author1.setBooks(Arrays.asList(book1, book2, book3));
+
+        author1.getBooks().add(book1);
+        author1.getBooks().add(book2);
+        author1.getBooks().add(book3);
 
         categoryRepository.save(category);
 
