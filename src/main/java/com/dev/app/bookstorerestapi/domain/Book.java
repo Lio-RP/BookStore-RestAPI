@@ -1,5 +1,6 @@
 package com.dev.app.bookstorerestapi.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -20,6 +21,7 @@ public class Book extends BaseEntity {
     private String edition;
 
     @ManyToOne
+    @JsonIgnoreProperties("books")
     private Category category;
 
     @ManyToMany
