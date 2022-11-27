@@ -32,8 +32,6 @@ public class DataLoader implements CommandLineRunner {
     }
 
     public void loadData(){
-        Category category = new Category();
-        category.setCatName("Programming");
 
         Book book1 = new Book();
         book1.setBookName("Android Studio 3.0 Development Essentials, Android 8 Edition by Neil Smyth");
@@ -50,37 +48,37 @@ public class DataLoader implements CommandLineRunner {
         book3.setIsbn(new BigInteger(String.valueOf(1234523450)));
         book3.setEdition("Android 8 Edition");
 
-        Author author1 = new Author();
-        author1.setFirstName("Liban");
-        author1.setLastName("Abdullahi");
-        author1.setPhoneNumber("+79964426139");
-        author1.setEmail("libanr4243@gmail.com");
-
         bookRepository.save(book1);
         bookRepository.save(book2);
         bookRepository.save(book3);
+
+        Category category = new Category();
+        category.setCatName("Programming");
+        category.getBooks().add(book1);
+        category.getBooks().add(book2);
+        category.getBooks().add(book3);
 
         book1.setCategory(category);
         book2.setCategory(category);
         book3.setCategory(category);
 
-        book1.getAuthors().add(author1);
-        book2.getAuthors().add(author1);
-        book3.getAuthors().add(author1);
-
-        //category.setBooks(Arrays.asList(book1, book2, book3));
-        category.getBooks().add(book1);
-        category.getBooks().add(book2);
-        category.getBooks().add(book3);
-
-        //author1.setBooks(Arrays.asList(book1, book2, book3));
-
+        Author author1 = new Author();
+        author1.setFirstName("Liban");
+        author1.setLastName("Abdullahi");
+        author1.setPhoneNumber("+79964426139");
+        author1.setEmail("libanr4243@gmail.com");
         author1.getBooks().add(book1);
         author1.getBooks().add(book2);
         author1.getBooks().add(book3);
 
-        categoryRepository.save(category);
+        book1.getAuthors().add(author1);
+        book2.getAuthors().add(author1);
+        book3.getAuthors().add(author1);
 
+        categoryRepository.save(category);
         authorRepository.save(author1);
+        bookRepository.save(book1);
+        bookRepository.save(book2);
+        bookRepository.save(book3);
     }
 }
