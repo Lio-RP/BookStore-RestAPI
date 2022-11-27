@@ -5,7 +5,7 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>3.0.0</version>
+        <version>2.7.2</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.dev.app</groupId>
@@ -66,6 +66,10 @@
             <artifactId>hibernate-validator-annotation-processor</artifactId>
         </dependency>
 
+        <!--
+         Docs: http://localhost:8080/v3/api-docs //By adin in application.properties file: spring.mvc.pathmatch.matching-strategy=ANT_PATH_MATCHER
+         Swagger-ui: http://localhost:8080/swagger-ui/index.html
+         -->
         <dependency>
             <groupId>org.springdoc</groupId>
             <artifactId>springdoc-openapi-ui</artifactId>
@@ -97,48 +101,47 @@
     </dependencies>
 
     <build>
-       <pluginManagement>
-           <plugins>
-               <plugin>
-                   <groupId>org.springframework.boot</groupId>
-                   <artifactId>spring-boot-maven-plugin</artifactId>
-                   <configuration>
-                       <excludes>
-                           <exclude>
-                               <groupId>org.projectlombok</groupId>
-                               <artifactId>lombok</artifactId>
-                           </exclude>
-                       </excludes>
-                   </configuration>
-               </plugin>
-               <plugin>
-                   <groupId>org.apache.maven.plugins</groupId>
-                   <artifactId>maven-compiler-plugin</artifactId>
-                   <version>3.8.1</version>
-                   <configuration>
-                       <source>17</source>
-                       <target>17</target>
-                       <annotationProcessorPaths>
-                           <path>
-                               <groupId>org.projectlombok</groupId>
-                               <artifactId>lombok</artifactId>
-                               <version>${lombok.version}</version>
-                           </path>
-                           <path>
-                               <groupId>org.mapstruct</groupId>
-                               <artifactId>mapstruct-processor</artifactId>
-                               <version>1.5.2.Final</version>
-                           </path>
-                       </annotationProcessorPaths>
-                       <compilerArgs>
-                           <compilerArg>
-                               -Amapstruct.defaultComponentModel=spring
-                           </compilerArg>
-                       </compilerArgs>
-                   </configuration>
-               </plugin>
-           </plugins>
-       </pluginManagement>
+       <plugins>
+           <plugin>
+               <groupId>org.springframework.boot</groupId>
+               <artifactId>spring-boot-maven-plugin</artifactId>
+               <version>${project.parent.version}</version>
+               <configuration>
+                   <excludes>
+                       <exclude>
+                           <groupId>org.projectlombok</groupId>
+                           <artifactId>lombok</artifactId>
+                       </exclude>
+                   </excludes>
+               </configuration>
+           </plugin>
+           <plugin>
+               <groupId>org.apache.maven.plugins</groupId>
+               <artifactId>maven-compiler-plugin</artifactId>
+               <version>3.8.1</version>
+               <configuration>
+                   <source>17</source>
+                   <target>17</target>
+                   <annotationProcessorPaths>
+                       <path>
+                           <groupId>org.projectlombok</groupId>
+                           <artifactId>lombok</artifactId>
+                           <version>${lombok.version}</version>
+                       </path>
+                       <path>
+                           <groupId>org.mapstruct</groupId>
+                           <artifactId>mapstruct-processor</artifactId>
+                           <version>1.5.2.Final</version>
+                       </path>
+                   </annotationProcessorPaths>
+                   <compilerArgs>
+                       <compilerArg>
+                           -Amapstruct.defaultComponentModel=spring
+                       </compilerArg>
+                   </compilerArgs>
+               </configuration>
+           </plugin>
+       </plugins>
     </build>
 
 </project>
