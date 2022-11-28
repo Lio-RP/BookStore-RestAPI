@@ -21,6 +21,9 @@ public class Book extends BaseEntity {
     private String edition;
 
     @ManyToOne
+    private Publisher publisher;
+
+    @ManyToOne
     @JsonIgnoreProperties("books")
     private Category category;
 
