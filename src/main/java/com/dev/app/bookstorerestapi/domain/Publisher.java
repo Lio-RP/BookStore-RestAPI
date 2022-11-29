@@ -1,5 +1,6 @@
 package com.dev.app.bookstorerestapi.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -25,5 +26,6 @@ public class Publisher extends BaseEntity {
 
     @OneToMany
     @JoinColumn(name = "publisher_id")
+    @JsonIgnoreProperties("publisher")
     private List<Book> books = new ArrayList<>();
 }

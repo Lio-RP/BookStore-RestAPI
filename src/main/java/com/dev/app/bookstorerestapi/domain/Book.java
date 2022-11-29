@@ -23,6 +23,7 @@ public class Book extends BaseEntity {
     private Byte[] image;
 
     @ManyToOne
+    @JsonIgnoreProperties("books")
     private Publisher publisher;
 
     @ManyToOne
