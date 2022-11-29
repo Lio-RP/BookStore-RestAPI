@@ -20,6 +20,8 @@ public class Book extends BaseEntity {
     private BigInteger isbn;
     private String edition;
 
+    private Byte[] image;
+
     @ManyToOne
     private Publisher publisher;
 

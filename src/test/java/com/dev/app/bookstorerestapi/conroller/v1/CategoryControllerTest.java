@@ -15,6 +15,7 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import java.util.Arrays;
 
 import static com.dev.app.bookstorerestapi.conroller.v1.AbstractRestController.asJsonString;
+import static org.hamcrest.Matchers.hasSize;
 import static org.hamcrest.core.IsEqual.equalTo;
 import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
@@ -80,13 +81,16 @@ public class CategoryControllerTest {
         category.setId(1L);
         category.setCatName("Category one");
 
+        category.setBooks(Arrays.asList(new Book(), new Book(), new Book()));
+
         when(categoryService.create(any())).thenReturn(category);
 
         mockMvc.perform(post("/api/v1/categories")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(asJsonString(category)))
                 .andExpect(status().isCreated())
-                .andExpect(jsonPath("$.catName", equalTo("Category one")));
+                .andExpect(jsonPath("$.catName", equalTo("Category one")))
+                .andExpect(jsonPath("$.books", hasSize(3)));
 
         verify(categoryService, times(1)).create(any());
     }
@@ -98,13 +102,16 @@ public class CategoryControllerTest {
         Category category = new Category();
         category.setCatName("Category one");
 
+        category.setBooks(Arrays.asList(new Book(), new Book(), new Book()));
+
         when(categoryService.update(id, category)).thenReturn(category);
 
         mockMvc.perform(put("/api/v1/categories/" + id)
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(asJsonString(category)))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.catName", equalTo("Category one")));
+                .andExpect(jsonPath("$.catName", equalTo("Category one")))
+                .andExpect(jsonPath("$.books", hasSize(3)));
 
         verify(categoryService, times(1)).update(anyLong(), any());
     }
