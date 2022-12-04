@@ -19,6 +19,8 @@ public class Book extends BaseEntity {
     private String bookName;
     private BigInteger isbn;
     private String edition;
+    private float price;
+    private int pages;
 
     private Byte[] image;
 

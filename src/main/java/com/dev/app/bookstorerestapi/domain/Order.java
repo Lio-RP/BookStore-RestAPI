@@ -16,7 +16,7 @@ import java.util.List;
 @Table(name = "orders")
 public class Order extends BaseEntity {
 
-    private String orderNumber;
+    private int orderNumber;
     private LocalDate dateOrdered;
     private int booksQuantity;
     private float totalPrice;

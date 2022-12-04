@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,6 +23,9 @@ public class Customer extends Person {
     private String city;
     private String country;
     private int zipcode;
+
+    @OneToOne
+    private User user;
 
     @OneToMany
     @JoinColumn(name = "customer_id")
