@@ -1,5 +1,6 @@
 package com.dev.app.bookstorerestapi.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -29,5 +30,6 @@ public class Customer extends Person {
 
     @OneToMany
     @JoinColumn(name = "customer_id")
+    @JsonIgnoreProperties("customer")
     private List<Order> orders = new ArrayList<>();
 }

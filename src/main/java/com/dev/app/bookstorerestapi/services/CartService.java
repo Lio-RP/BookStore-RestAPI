@@ -11,11 +11,11 @@ public interface CartService {
 
     Cart addToCart(Long bookId, User user);
 
-    void incrementCartItem(Long cartId, User user);
+    void updateCartItem(Long cartId, User user);
 
-    void decrementCartItem(Long cartId, User user);
+    void deleteOneItem(Long cartId, User user);
 
-    void deleteCartItem(Long cartId, User user);
+    void deleteCartItems(Long cartId, User user);
 
     void clearCart(User user);
 

@@ -55,13 +55,13 @@ public class CartServiceImpl implements CartService {
             return cartRepository.save(newCartItem);
         }
         Cart cart = cartOptional.get();
-        incrementCartItem(cart.getId(), user);
+        updateCartItem(cart.getId(), user);
 
         return cart;
     }
 
     @Override
-    public void incrementCartItem(Long cartId, User user) {
+    public void updateCartItem(Long cartId, User user) {
         List<Cart> carts = getAllCartsByUser(user);
 
         Optional<Cart> cartOptional = carts.stream().filter(cart -> cart.getId().equals(cartId)).findFirst();
@@ -77,7 +77,7 @@ public class CartServiceImpl implements CartService {
     }
 
     @Override
-    public void decrementCartItem(Long cartId, User user) {
+    public void deleteOneItem(Long cartId, User user) {
         List<Cart> carts = getAllCartsByUser(user);
 
         Optional<Cart> cartOptional = carts.stream().filter(cart -> cart.getId().equals(cartId)).findFirst();
@@ -99,7 +99,7 @@ public class CartServiceImpl implements CartService {
     }
 
     @Override
-    public void deleteCartItem(Long cartId, User user) {
+    public void deleteCartItems(Long cartId, User user) {
         List<Cart> carts = getAllCartsByUser(user);
 
         Optional<Cart> cartOptional = carts.stream().filter(cart -> cart.getId().equals(cartId)).findFirst();

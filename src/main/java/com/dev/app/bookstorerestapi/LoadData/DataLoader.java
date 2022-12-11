@@ -155,11 +155,13 @@ public class DataLoader implements CommandLineRunner {
         customer_role.setRole("CUSTOMER");
         customer_role.getUsers().add(customer_user);
         customer_role.setPrivileges(Arrays.asList(book_read));
+        customer_user.setRoles(Arrays.asList(customer_role));
 
         Role admin_role = new Role();
         admin_role.setRole("ADMIN");
         admin_role.setUsers(Arrays.asList(liban));
         admin_role.setPrivileges(Arrays.asList(book_read, book_write));
+        liban.setRoles(Arrays.asList(admin_role));
 
         privilegeRepository.save(book_write);
         privilegeRepository.save(book_read);
@@ -179,12 +181,14 @@ public class DataLoader implements CommandLineRunner {
         cart1.setUser(customer_user);
         cart1.setQuantity(1);
         cart1.setSubtotalPrice(book1.getPrice());
+        cart1.setUser(customer_user);
 
         Cart cart2 = new Cart();
         cart2.setBook(book2);
         cart2.setUser(customer_user);
         cart2.setQuantity(1);
         cart2.setSubtotalPrice(book1.getPrice());
+        cart2.setUser(customer_user);
 
         cartRepository.save(cart1);
         cartRepository.save(cart2);

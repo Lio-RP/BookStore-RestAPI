@@ -50,7 +50,9 @@ public class OrderServiceImpl implements OrderService {
         order.setBooksQuantity(totalQuantity);
         order.setTotalPrice(totalPrice);
 
-        return order;
+        Order savedOrder = orderRepository.save(order);
+
+        return savedOrder;
     }
 
     @Override
