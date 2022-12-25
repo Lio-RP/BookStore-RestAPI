@@ -6,6 +6,7 @@ import com.dev.app.bookstorerestapi.services.CategoryService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -45,6 +46,7 @@ public class CategoryController {
     @Operation(summary = "Create new Category")
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
+    @PreAuthorize("hasRole('ADMIN')")
     public Category create(@RequestBody Category category){
         return categoryService.create(category);
     }
@@ -52,6 +54,7 @@ public class CategoryController {
     @Operation(summary = "Update an existing Category")
     @PutMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
+    @PreAuthorize("hasRole('ADMIN')")
     public Category update(@PathVariable Long id, @RequestBody Category category){
         return categoryService.update(id, category);
     }
@@ -59,6 +62,7 @@ public class CategoryController {
     @Operation(summary = "Delete Category By Id")
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
+    @PreAuthorize("hasRole('ADMIN')")
     public void deleteById(@PathVariable Long id){
         categoryService.deleteById(id);
     }

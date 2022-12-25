@@ -5,6 +5,7 @@ import com.dev.app.bookstorerestapi.services.BookService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -37,6 +38,7 @@ public class BookController {
     @Operation(summary = "Create new Book")
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
+    @PreAuthorize("hasRole('ADMIN')")
     public Book create(@RequestBody Book book){
         return bookService.create(book);
     }
@@ -44,6 +46,7 @@ public class BookController {
     @Operation(summary = "Update an existing Book")
     @PutMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
+    @PreAuthorize("hasRole('ADMIN')")
     public Book update(@PathVariable Long id, @RequestBody Book book){
         return bookService.update(id, book);
     }
@@ -51,6 +54,7 @@ public class BookController {
     @Operation(summary = "Delete Book By id")
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
+    @PreAuthorize("hasRole('ADMIN')")
     public void deleteById(@PathVariable Long id){
         bookService.deleteById(id);
     }
